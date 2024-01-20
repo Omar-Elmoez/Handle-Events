@@ -1,9 +1,13 @@
 import { QueryClient } from "@tanstack/react-query";
+import getHostName from "./getHostName";
 
 export const queryClient = new QueryClient();
 
+const hostName = getHostName();
 export async function fetchEvents({ signal, searchTerm }) {
-  let url = "http://localhost:3000/events";
+
+
+  let url = `${hostName}/events`;
 
   if (searchTerm) {
     url += `?search=${searchTerm}`;
@@ -25,7 +29,7 @@ export async function fetchEvents({ signal, searchTerm }) {
 
 export async function createNewEvent(eventData) {
 
-  const response = await fetch("http://localhost:3000/events", {
+  const response = await fetch(`${hostName}/events`, {
     method: "POST",
     body: JSON.stringify(eventData),
     headers: {
@@ -46,7 +50,7 @@ export async function createNewEvent(eventData) {
 }
 
 export async function fetchEventsImages() {
-  const response = await fetch("http://localhost:3000/events/images");
+  const response = await fetch(`${hostName}/events/images`);
 
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the events images");
@@ -61,7 +65,7 @@ export async function fetchEventsImages() {
 }
 
 export async function fetchEventDetails(id) {
-  const response = await fetch(`http://localhost:3000/events/${id}`);
+  const response = await fetch(`${hostName}/events/${id}`);
 
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the event details");
@@ -76,7 +80,7 @@ export async function fetchEventDetails(id) {
 }
 
 export async function deleteEvent(id) {
-  const response = await fetch(`http://localhost:3000/events/${id}`, {
+  const response = await fetch(`${hostName}/events/${id}`, {
     method: "DELETE",
   });
 
@@ -93,7 +97,7 @@ export async function deleteEvent(id) {
 }
 
 export async function updateEvent(newData) {
-  const response = await fetch(`http://localhost:3000/events/${newData.id}`, {
+  const response = await fetch(`${hostName}/events/${newData.id}`, {
     method: "PUT",
     body: JSON.stringify(newData),
     headers: {

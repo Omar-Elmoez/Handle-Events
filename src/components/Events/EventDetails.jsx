@@ -5,10 +5,12 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { deleteEvent, fetchEventDetails } from '../../util/http.js';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
 import LoadingIndicator from '../UI/LoadingIndicator.jsx';
+import getHostName from '../../util/getHostName.js';
 
 export default function EventDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const hostName = getHostName();
 
   const { data: event, isPending, isError, error } = useQuery({
     queryKey: ['event', id],
@@ -44,7 +46,7 @@ export default function EventDetails() {
           </nav>
         </header>
         <div id="event-details-content">
-          <img src={`http://localhost:3000/${event?.image}`} alt="event-image" />
+          <img src={`${hostName}/${event?.image}`} alt="event-image" />
           <div id="event-details-info">
             <div>
               <p id="event-details-location">{event?.location}</p>
