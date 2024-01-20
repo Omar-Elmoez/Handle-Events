@@ -1,4 +1,7 @@
+import getHostName from "../util/getHostName";
+
 export default function ImagePicker({ images, selectedImage, onSelect }) {
+  const hostName = getHostName();
   return (
     <div id="image-picker">
       <p>Select an image</p>
@@ -10,7 +13,7 @@ export default function ImagePicker({ images, selectedImage, onSelect }) {
             className={selectedImage === image.path ? 'selected' : undefined}
           >
             <img
-              src={`http://localhost:3000/${image.path}`}
+              src={`${hostName}/${image.path}`}
               alt={image.caption}
             />
           </li>
