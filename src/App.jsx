@@ -12,21 +12,6 @@ import EditEvent from './components/Events/EditEvent.jsx';
 import { queryClient } from './util/http.js';
 
 const router = createBrowserRouter([
-  // {
-  //   path: '/',
-  //   element: <Navigate to="/events" />,
-  // },
-  // {
-  //   path: '/events',
-  //   element: <Events />,
-
-  //   children: [
-  //     {
-  //       path: '/events/new',
-  //       element: <NewEvent />,
-  //     },
-  //   ],
-  // },
   {
     path: '/',
     element: <Events />,
