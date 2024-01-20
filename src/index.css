@@ -233,6 +233,14 @@ ul {
   gap: 2rem;
 }
 
+@media (max-width: 900px) {
+  .controls-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+}
+
 .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -340,12 +348,8 @@ ul {
 }
 
 .modal {
-  margin: 0;
   padding: 2rem;
   position: fixed;
-  top: 10vh;
-  left: calc(50% - 15rem);
-  width: 30rem;
   max-height: 80vh;
   background: #e2e5eb;
   border: none;
