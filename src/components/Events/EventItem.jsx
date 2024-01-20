@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import getHostName from '../../util/getHostName';
 
 export default function EventItem({ event }) {
+  const hostName = getHostName();
   const formattedDate = new Date(event.date).toLocaleDateString('en-US', {
     day: 'numeric',
     month: 'short',
@@ -8,7 +10,7 @@ export default function EventItem({ event }) {
   });
   return (
     <article className="event-item">
-      <img src={`http://localhost:3000/${event.image}`} alt={event.title} />
+      <img src={`${hostName}/${event.image}`} alt={event.title} />
       <div className="event-item-content">
         <div>
           <h2>{event.title}</h2>
