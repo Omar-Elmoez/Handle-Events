@@ -19,7 +19,7 @@ export default function EditEvent() {
     mutationFn: updateEvent,
     onSuccess: () => {
       console.log('request successful');
-      navigate('/events');
+      navigate('/');
     }
   })
 
