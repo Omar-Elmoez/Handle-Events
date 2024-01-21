@@ -15,16 +15,14 @@ export default function EditEvent() {
     queryFn: () => fetchEventDetails(id),
   })
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: updateEvent,
     onSuccess: () => {
-      console.log('request successful');
       navigate('/');
     }
   })
 
   function handleSubmit(formData) {
-    console.log('you clicked update');
     mutate({ event: formData, id });
   }
 
@@ -35,12 +33,15 @@ export default function EditEvent() {
   return (
     <Modal onClose={handleClose}>
       <EventForm inputData={data} onSubmit={handleSubmit}>
-        <Link to="../" className="button-text">
-          Cancel
-        </Link>
-        <button type="submit" className="button">
-          Update
-        </button>
+        {isPending && "Updating...."}
+        {!isPending && <>
+          <Link to="../" className="button-text">
+            Cancel
+          </Link>
+          <button type="submit" className="button">
+            Update
+          </button>
+        </>}
       </EventForm>
     </Modal>
   );
