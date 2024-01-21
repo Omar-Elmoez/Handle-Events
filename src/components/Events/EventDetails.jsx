@@ -20,7 +20,7 @@ export default function EventDetails() {
   const { mutate, isPending: isPendingDelete } = useMutation({
     mutationFn: deleteEvent,
     onSuccess: () => {
-      navigate('/events')
+      navigate('/')
     }
   })
   const handleDelete = (id) => {
@@ -31,7 +31,7 @@ export default function EventDetails() {
     <>
       <Outlet />
       <Header>
-        <Link to="/events" className="nav-item">
+        <Link to="/" className="nav-item">
           View all Events
         </Link>
       </Header>
