@@ -20,7 +20,7 @@ export default function EventDetails() {
   const { mutate, isPending: isPendingDelete } = useMutation({
     mutationFn: deleteEvent,
     onSuccess: () => {
-      navigate('../')
+      navigate('/events')
     }
   })
   const handleDelete = (id) => {
