@@ -17,6 +17,12 @@ export default function EventDetails() {
     queryFn: () => fetchEventDetails(id),
   })
 
+  const formattedDate = new Date(event?.date).toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
+
   const { mutate, isPending: isPendingDelete } = useMutation({
     mutationFn: deleteEvent,
     onSuccess: () => {
@@ -50,7 +56,7 @@ export default function EventDetails() {
           <div id="event-details-info">
             <div>
               <p id="event-details-location">{event?.location}</p>
-              <time dateTime={`Todo-DateT$Todo-Time`}>{event?.date} {event?.time}</time>
+              <time dateTime={`Todo-DateT$Todo-Time`}>{formattedDate} @ {event?.time}</time>
             </div>
             <p id="event-details-description">{event?.description}</p>
           </div>
