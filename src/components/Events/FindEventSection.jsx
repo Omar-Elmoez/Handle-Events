@@ -28,7 +28,7 @@ export default function FindEventSection() {
   let content = <p>Please enter a search term.</p>
 
   if (isLoading) {
-    content = <LoadingIndicator />
+    content = <div className='event-details-loading'><LoadingIndicator /></div>
   }
 
   if (isError) {
