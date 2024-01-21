@@ -315,6 +315,12 @@ ul {
   max-width: 100%;
 }
 
+@media (max-width: 900px) {
+  #event-details header h1 {
+    font-size: 1rem;
+  }
+}
+
 #event-details header nav {
   display: flex;
   gap: 1rem;
@@ -356,6 +362,13 @@ ul {
 #event-details time {
   font-size: 1.5rem;
   margin: 0.5rem 0;
+}
+
+@media (max-width: 900px) {
+  #event-details time {
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
 }
 
 #event-details-location {

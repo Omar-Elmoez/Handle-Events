@@ -20,15 +20,15 @@ const router = createBrowserRouter([
         path: '/events/new',
         element: <NewEvent />,
       },
-    ],
-  },
-  {
-    path: '/events/:id',
-    element: <EventDetails />,
-    children: [
       {
-        path: '/events/:id/edit',
-        element: <EditEvent />,
+        path: '/events/:id',
+        element: <EventDetails />,
+        children: [
+          {
+            path: '/events/:id/edit',
+            element: <EditEvent />,
+          },
+        ],
       },
     ],
   },
