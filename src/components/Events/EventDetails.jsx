@@ -6,8 +6,11 @@ import { deleteEvent, fetchEventDetails } from '../../util/http.js';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
 import LoadingIndicator from '../UI/LoadingIndicator.jsx';
 import getHostName from '../../util/getHostName.js';
+import Modal from '../UI/Modal.jsx';
+import { useState } from 'react';
 
 export default function EventDetails() {
+  const [showModal, setShowModal] = useState(false)
   const navigate = useNavigate();
   const { id } = useParams();
   const hostName = getHostName();
@@ -23,18 +26,35 @@ export default function EventDetails() {
     year: 'numeric',
   })
 
-  const { mutate, isPending: isPendingDelete } = useMutation({
+  const { mutate, isPending: isPendingDelete, isError: isErrorDelete, error: errorDelete } = useMutation({
     mutationFn: deleteEvent,
     onSuccess: () => {
       navigate('/')
     }
   })
-  const handleDelete = (id) => {
+  const handleDelete = () => {
     mutate(id)
+  }
+
+  const handleShowModal = () => {
+    setShowModal(true)
+  }
+
+  const handleClose = () => {
+    setShowModal(false)
   }
 
   return (
     <>
+      {showModal && !isPendingDelete && <Modal onClose={handleClose}>
+        <h2>Are you sure?</h2>
+        <p>Do you really want to delete this event? This action cannot be undone.</p>
+        <div className="form-actions">
+          <button onClick={handleClose} className='button-text'>Cancel</button>
+          <button onClick={handleDelete} className="button">Delete</button>
+        </div>
+        {isErrorDelete && <ErrorBlock title="An error occurred" message={errorDelete.info?.message || "Failed to delete Event."} />}
+      </Modal>}
       <Outlet />
       <Header>
         <Link to="/" className="nav-item">
@@ -47,7 +67,7 @@ export default function EventDetails() {
         <header>
           <h1>{event?.title}</h1>
           <nav>
-            <button onClick={() => handleDelete(event?.id)}>Delete</button>
+            <button onClick={handleShowModal}>Delete</button>
             <Link to="edit">Edit</Link>
           </nav>
         </header>
