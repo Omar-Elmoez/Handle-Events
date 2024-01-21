@@ -18,7 +18,7 @@ export default function EventItem({ event }) {
           <p className="event-item-location">{event.location}</p>
         </div>
         <p>
-          <Link to={`/events/${event.id}`} className="button">
+          <Link to={`/${event.id}`} className="button">
             View Details
           </Link>
         </p>
