@@ -37,7 +37,7 @@ export default function NewEventsSection() {
   }
 
   return (
-    <section className="content-section" id="new-events-section">
+    <section id="new-events-section">
       <header>
         <h2>Recently added events</h2>
       </header>

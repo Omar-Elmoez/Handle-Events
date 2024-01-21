@@ -35,8 +35,8 @@ export default function EventDetails() {
           View all Events
         </Link>
       </Header>
-      {isPending && <p>Fetching event details...</p>}
-      {isPendingDelete && <LoadingIndicator />}
+      {isPending && <p className='event-details-pending'>Fetching event details...</p>}
+      {isPendingDelete && <div className='event-details-loading'><LoadingIndicator /></div>}
       {event && !isPendingDelete && <article id="event-details">
         <header>
           <h1>{event?.title}</h1>
