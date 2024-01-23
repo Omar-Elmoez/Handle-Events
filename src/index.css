@@ -458,6 +458,8 @@ ul {
   gap: 2rem;
   align-items: center;
   text-align: left;
+  width: 90%;
+  margin-inline: auto
 }
 
 .error-block-icon {
