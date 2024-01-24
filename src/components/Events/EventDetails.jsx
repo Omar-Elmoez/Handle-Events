@@ -16,7 +16,7 @@ export default function EventDetails() {
   const hostName = getHostName();
 
   const { data: event, isPending, isError, error } = useQuery({
-    queryKey: ['event', id],
+    queryKey: ['events', id],
     queryFn: () => fetchEventDetails(id),
   })
 

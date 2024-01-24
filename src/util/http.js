@@ -4,13 +4,17 @@ import getHostName from "./getHostName";
 export const queryClient = new QueryClient();
 
 const hostName = getHostName();
-export async function fetchEvents({ signal, searchTerm }) {
+export async function fetchEvents({ signal, searchTerm, max }) {
 
 
   let url = `${hostName}/events`;
 
   if (searchTerm) {
     url += `?search=${searchTerm}`;
+  }
+
+  if (max) {
+    url += `?max=${max}`
   }
 
   const response = await fetch(url, { signal: signal });
